@@ -53,14 +53,13 @@ namespace iGaze.GazeSources
 
 		protected void OnGazeDataReceived(double x, double y)
 		{
-			System.Diagnostics.Debug.Write($"{x},{y}\t\t");
 			if (UseSmoothing)
 				ApplyKalmanFilters(ref x, ref y);
 			if (UseCalibration)
 				ApplyCalibration(ref x, ref y);
 			DataTimeStamp = DateTime.UtcNow;
 			DataPoint = new Point((int)x, (int)y);
-			//System.Windows.Forms.Cursor.Position = DataPoint;
+			System.Windows.Forms.Cursor.Position = DataPoint;
 		}
 
 		private void ApplyKalmanFilters(ref double x, ref double y)

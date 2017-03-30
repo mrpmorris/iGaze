@@ -1,5 +1,6 @@
 ﻿using iGaze.GazeSources;
 using System;
+using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -11,10 +12,11 @@ namespace iGaze
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private readonly TimeSpan GazeTimeMilliseconds = TimeSpan.FromSeconds(1);
+		private readonly TimeSpan GazeTimeMilliseconds = TimeSpan.FromSeconds(0.9);
 		private GazeSource GazeSource;
 		private DispatcherTimer Timer;
 		private Action TimerAction;
+		private SpeechSynthesizer Text2Speech;
 
 		public MainWindow()
 		{
@@ -27,6 +29,7 @@ namespace iGaze
 			Timer.Interval = GazeTimeMilliseconds;
 			Timer.IsEnabled = false;
 			Timer.Tick += Timer_Tick;
+			Text2Speech = new SpeechSynthesizer();
 		}
 
 		private void Calibrate()
@@ -44,8 +47,13 @@ namespace iGaze
 
 		private void SayText()
 		{
-			PreviousInputText.Text = "I said: " + InputText.Text;
-			InputText.Text = "";
+			if (InputText.Text.Length > 0)
+			{
+				string speech = InputText.Text.Replace('_', ' ');
+				Text2Speech.SpeakAsync(speech);
+				PreviousInputText.Text = "I said: " + speech;
+				InputText.Text = "";
+			}
 		}
 
 		private void Timer_Tick(object sender, EventArgs e)
@@ -63,7 +71,7 @@ namespace iGaze
 		private void Button_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
 		{
 			Button control = (Button)sender;
-			switch((string)control.Tag)
+			switch ((string)control.Tag)
 			{
 				case "OK":
 					if (InputText.Text.Length > 0)
@@ -71,12 +79,10 @@ namespace iGaze
 					break;
 
 				case "DELETE":
-					if (InputText.Text.Length > 0)
-						TimeOut(() => InputText.Text = InputText.Text.Remove(InputText.Text.Length - 1));
-					break;
-
-				case "_":
-					TimeOut(() => InputText.Text += " ");
+					TimeOut(() =>
+					{
+						if (InputText.Text.Length > 0) InputText.Text = InputText.Text.Remove(InputText.Text.Length - 1);
+					});
 					break;
 
 				default:
