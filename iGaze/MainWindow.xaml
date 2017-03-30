@@ -29,17 +29,7 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Row 0-->
-        <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10">
-            <TextBox Name="InputText" BorderThickness="0"/>
-        </Viewbox>
-
-        <!-- Row 1-->
-        <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10">
-            <TextBox Name="PreviousInputText" BorderThickness="0"/>
-        </Viewbox>
-
-        <!-- Row 0-->
+        <!-- Row 0 -->
         <Button Grid.Row="0" Grid.Column="0" Tag="Q" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock >Q</TextBlock>
         </Button>
@@ -71,7 +61,17 @@
             <TextBlock>P</TextBlock>
         </Button>
 
-        <!-- Row 3-->
+        <!-- Row 1 -->
+        <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10">
+            <TextBox Name="InputText" BorderThickness="0"/>
+        </Viewbox>
+
+        <!-- Row 2 -->
+        <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10">
+            <TextBox Name="PreviousInputText" BorderThickness="0"/>
+        </Viewbox>
+
+        <!-- Row 3 -->
         <Button Grid.Row="3" Grid.Column="0" Tag="A" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>A</TextBlock>
         </Button>
@@ -103,7 +103,7 @@
             <TextBlock>&lt;</TextBlock>
         </Button>
 
-        <!-- Row 4-->
+        <!-- Row 4 -->
         <Button Grid.Row="4" Grid.Column="0" Tag="Z" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>Z</TextBlock>
         </Button>
