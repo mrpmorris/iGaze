@@ -5,10 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:iGaze"
         mc:Ignorable="d"
-        WindowState="Maximized"
         WindowStyle="None"
+        Background="Black"
+        Foreground="White"
+        Topmost="True"
+        WindowState="Maximized"
+        ShowInTaskbar="False"
         Title="CalibrationWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+    <Canvas>
+        <Ellipse Height="10" Width="10" Fill="White" Canvas.Left="0" Canvas.Top="0" Name="FocusPoint">
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="Ellipse.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation 
+                                    From="White" 
+                                    To="Red" 
+                                    Duration="0:0:1" 
+                                    AutoReverse="True" 
+                                    RepeatBehavior="Forever" 
+                                    Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+    </Canvas>
+
 </Window>

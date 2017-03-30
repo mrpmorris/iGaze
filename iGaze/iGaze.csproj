@@ -77,7 +77,8 @@
     <Compile Include="CalibrationWindow.xaml.cs">
       <DependentUpon>CalibrationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GazeSource.cs" />
+    <Compile Include="GazeSources\GazeSource.cs" />
+    <Compile Include="GazeSources\GazeSourceFactory.cs" />
     <Compile Include="GazeSources\Tobii\TobiiGazeSource.cs" />
     <Compile Include="KalmanFilter.cs" />
     <Compile Include="MainWindow.xaml.cs">

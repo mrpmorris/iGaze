@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using iGaze.GazeSources;
+using System.Windows;
 
 namespace iGaze
 {
@@ -12,7 +13,14 @@ namespace iGaze
 		public MainWindow()
 		{
 			InitializeComponent();
-			GazeSource = new GazeSources.Tobii.TobiiGazeSource();
+			Calibrate();
+			GazeSource = GazeSourceFactory.Create();
+		}
+
+		private static void Calibrate()
+		{
+			var calibrationWindow = new CalibrationWindow();
+			calibrationWindow.ShowDialog();
 		}
 	}
 }

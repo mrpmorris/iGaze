@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace iGaze
+namespace iGaze.GazeSources
 {
 	public abstract class GazeSource : IDisposable
 	{
@@ -33,7 +33,6 @@ namespace iGaze
 			ApplyKalmanFilters(ref x, ref y);
 			DataTimeStamp = DateTime.UtcNow;
 			DataPoint = new Point((int)x, (int)y);
-			System.Windows.Forms.Cursor.Position = DataPoint;
 		}
 
 		private void ApplyKalmanFilters(ref double x, ref double y)
