@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:iGaze"
         mc:Ignorable="d"
         FontSize="40"
+        PreviewKeyDown="Window_PreviewKeyDown"
         Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
@@ -27,102 +29,107 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Row 0-->
         <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10">
-            <TextBox Text="Hello"/>
+            <TextBox Name="InputText" BorderThickness="0"/>
         </Viewbox>
 
         <!-- Row 1-->
-        <Button Grid.Row="1" Grid.Column="0">
+        <Viewbox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10">
+            <TextBox Name="PreviousInputText" BorderThickness="0"/>
+        </Viewbox>
+
+        <!-- Row 2-->
+        <Button Grid.Row="2" Grid.Column="0" Tag="Q" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock >Q</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="1">
+        <Button Grid.Row="2" Grid.Column="1" Tag="W" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>W</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="2">
+        <Button Grid.Row="2" Grid.Column="2" Tag="E" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>E</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="3">
+        <Button Grid.Row="2" Grid.Column="3" Tag="R" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>R</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="4">
+        <Button Grid.Row="2" Grid.Column="4" Tag="T" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>T</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="5">
+        <Button Grid.Row="2" Grid.Column="5" Tag="Y" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>Y</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="6">
+        <Button Grid.Row="2" Grid.Column="6" Tag="U" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>U</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="7">
+        <Button Grid.Row="2" Grid.Column="7" Tag="I" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>I</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="8">
+        <Button Grid.Row="2" Grid.Column="8" Tag="O" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>O</TextBlock>
         </Button>
-        <Button Grid.Row="1" Grid.Column="9">
+        <Button Grid.Row="2" Grid.Column="9" Tag="P" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>P</TextBlock>
         </Button>
 
-        <!-- Row 2-->
-        <Button Grid.Row="2" Grid.Column="0">
+        <!-- Row 3-->
+        <Button Grid.Row="3" Grid.Column="0" Tag="A" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>A</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="1">
+        <Button Grid.Row="3" Grid.Column="1" Tag="S" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>S</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="2">
+        <Button Grid.Row="3" Grid.Column="2" Tag="D" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>D</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="3">
+        <Button Grid.Row="3" Grid.Column="3" Tag="F" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>F</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="4">
+        <Button Grid.Row="3" Grid.Column="4" Tag="G" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>G</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="5">
+        <Button Grid.Row="3" Grid.Column="5" Tag="H" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>H</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="6">
+        <Button Grid.Row="3" Grid.Column="6" Tag="J" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>J</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="7">
+        <Button Grid.Row="3" Grid.Column="7" Tag="K" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>K</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="8">
+        <Button Grid.Row="3" Grid.Column="8" Tag="L" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>L</TextBlock>
         </Button>
-        <Button Grid.Row="2" Grid.Column="9">
+        <Button Grid.Row="3" Grid.Column="9" Tag="DELETE" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>&lt;</TextBlock>
         </Button>
 
-        <!-- Row 3-->
-        <Button Grid.Row="3" Grid.Column="0">
+        <!-- Row 4-->
+        <Button Grid.Row="4" Grid.Column="0" Tag="Z" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>Z</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="1">
+        <Button Grid.Row="4" Grid.Column="1" Tag="X" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>X</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="2">
+        <Button Grid.Row="4" Grid.Column="2" Tag="C" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>C</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="3">
+        <Button Grid.Row="4" Grid.Column="3" Tag="V" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>V</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="4">
+        <Button Grid.Row="4" Grid.Column="4" Tag="B" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>B</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="5">
+        <Button Grid.Row="4" Grid.Column="5" Tag="N" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>N</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="6">
+        <Button Grid.Row="4" Grid.Column="6" Tag="M" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>M</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2">
+        <Button Grid.Row="4" Grid.Column="7" Grid.ColumnSpan="2" Tag="_" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>__</TextBlock>
         </Button>
-        <Button Grid.Row="3" Grid.Column="9">
-            <TextBlock>ok</TextBlock>
+        <Button Grid.Row="4" Grid.Column="9" Tag="OK" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
+            <TextBlock>OK</TextBlock>
         </Button>
-
     </Grid>
 </Window>

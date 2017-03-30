@@ -24,14 +24,21 @@ namespace iGaze
 		public CalibrationWindow()
 		{
 			InitializeComponent();
+		}
+
+		private void StartCalibration()
+		{
+			System.Windows.Forms.Cursor.Hide();
+			DataPointIndex = 0;
 			DataPoints = new List<System.Drawing.Point>();
 			GazeSource = GazeSourceFactory.Create();
 			GazeSource.UseCalibration = false;
-			GazeSource.Smoothing = false;
+			GazeSource.UseSmoothing = true;
 			Timer = new DispatcherTimer();
 			Timer.Interval = TimeSpan.FromMilliseconds(1000 / 50);
 			Timer.Tick += Timer_Tick;
-			Timer.IsEnabled = true;
+			Timer.Start();
+			ClearFocusPointLocation();
 			Canvas.SetLeft(FocusPoint, 0);
 			Canvas.SetTop(FocusPoint, 0);
 		}
@@ -43,10 +50,13 @@ namespace iGaze
 
 			System.Windows.Point controlPointOnScreen = FocusPoint.PointToScreen(new System.Windows.Point(FocusPoint.Width / 2, FocusPoint.Height / 2));
 			var gazeRectangle = new Rectangle((int)controlPointOnScreen.X, (int)controlPointOnScreen.Y, 0, 0);
-			gazeRectangle.Inflate(250, 250);
+			gazeRectangle.Inflate(300, 300);
 
 			if (!gazeRectangle.Contains(GazeSource.DataPoint))
 				return;
+
+			if (GazeSource.DataTimeStamp - LastSampleTime > TimeSpan.FromSeconds(1))
+				DataPoints.Clear();
 
 			DataPoints.Add(GazeSource.DataPoint);
 			LastSampleTime = GazeSource.DataTimeStamp;
@@ -97,8 +107,15 @@ namespace iGaze
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			Timer.IsEnabled = false;
+			Timer.Stop();
 			GazeSource.Dispose();
+			System.Windows.Forms.Cursor.Show();
+		}
+
+		private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			if ((bool)e.NewValue)
+				StartCalibration();
 		}
 	}
 }

@@ -8,14 +8,14 @@ namespace iGaze.GazeSources
 		public Point DataPoint { get; private set; }
 		public DateTime DataTimeStamp { get; private set; }
 		public bool UseCalibration { get; set; } = true;
-		public bool Smoothing { get; set; } = true;
+		public bool UseSmoothing { get; set; } = true;
 		public bool IsDisposed { get; private set; }
 
 		private KalmanFilter KalmanX;
 		private KalmanFilter KalmanY;
-		private PointF[] CalibrationPoints;
+		private static PointF[] CalibrationPoints;
 
-		public GazeSource()
+		static GazeSource()
 		{
 			CalibrationPoints = new PointF[]
 			{
@@ -53,22 +53,22 @@ namespace iGaze.GazeSources
 
 		protected void OnGazeDataReceived(double x, double y)
 		{
-			System.Diagnostics.Debug.WriteLine(x);
-			if (Smoothing)
+			System.Diagnostics.Debug.Write($"{x},{y}\t\t");
+			if (UseSmoothing)
 				ApplyKalmanFilters(ref x, ref y);
 			if (UseCalibration)
 				ApplyCalibration(ref x, ref y);
 			DataTimeStamp = DateTime.UtcNow;
 			DataPoint = new Point((int)x, (int)y);
-			System.Windows.Forms.Cursor.Position = DataPoint;
+			//System.Windows.Forms.Cursor.Position = DataPoint;
 		}
 
 		private void ApplyKalmanFilters(ref double x, ref double y)
 		{
 			if (KalmanX == null)
 			{
-				KalmanX = new KalmanFilter(x, 0.5, 1.5, 1000);
-				KalmanY = new KalmanFilter(y, 0.5, 1.5, 1000);
+				KalmanX = new KalmanFilter(x, 0.5, 5, 1000);
+				KalmanY = new KalmanFilter(y, 0.5, 5, 1000);
 			}
 			x = KalmanX.Update(x);
 			y = KalmanY.Update(y);

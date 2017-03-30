@@ -14,30 +14,28 @@
         ShowInTaskbar="False"
         Closing="Window_Closing"
         WindowState="Maximized"
+        IsVisibleChanged="Window_IsVisibleChanged"
         Title="CalibrationWindow" Height="500" Width="500">
     <Canvas>
-        <Canvas.Triggers>
-            <EventTrigger RoutedEvent="UserControl.Loaded">
-                <EventTrigger.Actions>
-                    <BeginStoryboard Name="Pulse">
-                        <Storyboard>
-                            <ColorAnimation 
+        <Ellipse Height="5" Width="5" Fill="White" Name="FocusPoint">
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="UserControl.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation 
                                 From="White" 
                                 To="Red" 
-                                Duration="0:0:1" 
+                                Duration="0:0:0.5" 
                                 AutoReverse="True" 
                                 RepeatBehavior="Forever"
                                 Storyboard.TargetName="FocusPoint"
                                 Storyboard.TargetProperty="(Ellipse.Fill).(SolidColorBrush.Color)"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger.Actions>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="UserControl.MouseLeave">
-                <StopStoryboard BeginStoryboardName="Pulse"/>
-            </EventTrigger>
-        </Canvas.Triggers>
-        <Ellipse Height="10" Width="10" Fill="White" Name="FocusPoint">
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Ellipse.Triggers>
         </Ellipse>
     </Canvas>
 </Window>
