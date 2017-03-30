@@ -5,8 +5,124 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:iGaze"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        FontSize="40"
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
+        <Viewbox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10">
+            <TextBox Text="Hello"/>
+        </Viewbox>
+
+        <!-- Row 1-->
+        <Button Grid.Row="1" Grid.Column="0">
+            <TextBlock >Q</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="1">
+            <TextBlock>W</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="2">
+            <TextBlock>E</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="3">
+            <TextBlock>R</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="4">
+            <TextBlock>T</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="5">
+            <TextBlock>Y</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="6">
+            <TextBlock>U</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="7">
+            <TextBlock>I</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="8">
+            <TextBlock>O</TextBlock>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="9">
+            <TextBlock>P</TextBlock>
+        </Button>
+
+        <!-- Row 2-->
+        <Button Grid.Row="2" Grid.Column="0">
+            <TextBlock>A</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1">
+            <TextBlock>S</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2">
+            <TextBlock>D</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="3">
+            <TextBlock>F</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="4">
+            <TextBlock>G</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="5">
+            <TextBlock>H</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="6">
+            <TextBlock>J</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="7">
+            <TextBlock>K</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="8">
+            <TextBlock>L</TextBlock>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="9">
+            <TextBlock>&lt;</TextBlock>
+        </Button>
+
+        <!-- Row 3-->
+        <Button Grid.Row="3" Grid.Column="0">
+            <TextBlock>Z</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="1">
+            <TextBlock>X</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="2">
+            <TextBlock>C</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="3">
+            <TextBlock>V</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="4">
+            <TextBlock>B</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="5">
+            <TextBlock>N</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="6">
+            <TextBlock>M</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="2">
+            <TextBlock>__</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="9">
+            <TextBlock>ok</TextBlock>
+        </Button>
+
     </Grid>
 </Window>

@@ -80,6 +80,8 @@
     <Compile Include="GazeSources\GazeSource.cs" />
     <Compile Include="GazeSources\GazeSourceFactory.cs" />
     <Compile Include="GazeSources\Tobii\TobiiGazeSource.cs" />
+    <Compile Include="HelperClasses\PointFMathetmatics.cs" />
+    <Compile Include="InverseBiLinear.cs" />
     <Compile Include="KalmanFilter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
