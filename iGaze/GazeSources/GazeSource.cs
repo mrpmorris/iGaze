@@ -7,6 +7,8 @@ namespace iGaze.GazeSources
 	{
 		public Point DataPoint { get; private set; }
 		public DateTime DataTimeStamp { get; private set; }
+		public bool UseCalibration { get; set; } = true;
+		public bool Smoothing { get; set; } = true;
 		public bool IsDisposed { get; private set; }
 
 		private KalmanFilter KalmanX;
@@ -19,10 +21,18 @@ namespace iGaze.GazeSources
 			{
 				new PointF(0.01f, 0.01f),
 				new PointF(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, 0.01f),
-				new PointF(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, 
+				new PointF(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width,
 					System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height),
 				new PointF(0.01f, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height)
 			};
+		}
+
+		public void SetCalibrationPoints(PointF topLeft, PointF topRight, PointF bottomRight, PointF bottomLeft)
+		{
+			CalibrationPoints[0] = topLeft;
+			CalibrationPoints[1] = topRight;
+			CalibrationPoints[2] = bottomRight;
+			CalibrationPoints[3] = bottomLeft;
 		}
 
 		protected virtual void Dispose(bool disposing)
@@ -43,11 +53,13 @@ namespace iGaze.GazeSources
 
 		protected void OnGazeDataReceived(double x, double y)
 		{
-			ApplyKalmanFilters(ref x, ref y);
-			ApplyCalibration(ref x, ref y);
+			System.Diagnostics.Debug.WriteLine(x);
+			if (Smoothing)
+				ApplyKalmanFilters(ref x, ref y);
+			if (UseCalibration)
+				ApplyCalibration(ref x, ref y);
 			DataTimeStamp = DateTime.UtcNow;
 			DataPoint = new Point((int)x, (int)y);
-			System.Diagnostics.Debug.WriteLine(y);
 			System.Windows.Forms.Cursor.Position = DataPoint;
 		}
 

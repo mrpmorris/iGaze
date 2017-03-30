@@ -19,8 +19,8 @@ namespace iGaze
 
 		private static void Calibrate()
 		{
-			//var calibrationWindow = new CalibrationWindow();
-			//calibrationWindow.ShowDialog();
+			var calibrationWindow = new CalibrationWindow();
+			calibrationWindow.ShowDialog();
 		}
 	}
 }
