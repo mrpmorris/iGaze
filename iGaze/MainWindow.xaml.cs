@@ -58,7 +58,8 @@ namespace iGaze
 
 		private void Timer_Tick(object sender, EventArgs e)
 		{
-			TimerAction?.Invoke();
+			if (DateTime.UtcNow - GazeSource.DataTimeStamp < GazeTimeMilliseconds)
+				TimerAction?.Invoke();
 		}
 
 
