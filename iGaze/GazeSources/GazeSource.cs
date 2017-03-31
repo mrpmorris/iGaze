@@ -10,6 +10,7 @@ namespace iGaze.GazeSources
 		public bool UseCalibration { get; set; } = true;
 		public bool UseSmoothing { get; set; } = true;
 		public bool IsDisposed { get; private set; }
+		public event EventHandler DataAvailable;
 
 		private KalmanFilter KalmanX;
 		private KalmanFilter KalmanY;
@@ -59,7 +60,7 @@ namespace iGaze.GazeSources
 				ApplyCalibration(ref x, ref y);
 			DataTimeStamp = DateTime.UtcNow;
 			DataPoint = new Point((int)x, (int)y);
-			System.Windows.Forms.Cursor.Position = DataPoint;
+			DataAvailable?.Invoke(this, EventArgs.Empty);
 		}
 
 		private void ApplyKalmanFilters(ref double x, ref double y)

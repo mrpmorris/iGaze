@@ -12,6 +12,7 @@ namespace iGaze
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public static readonly DependencyProperty CurrentWordProperty = DependencyProperty.Register("CurrentWord", typeof(bool), typeof(MainWindow));
 		private readonly TimeSpan GazeTimeMilliseconds = TimeSpan.FromSeconds(0.9);
 		private GazeSource GazeSource;
 		private DispatcherTimer Timer;
@@ -25,6 +26,7 @@ namespace iGaze
 			GazeSource = GazeSourceFactory.Create();
 			GazeSource.UseCalibration = true;
 			GazeSource.UseSmoothing = true;
+			GazeSource.DataAvailable += GazeSource_DataAvailable;
 			Timer = new DispatcherTimer();
 			Timer.Interval = GazeTimeMilliseconds;
 			Timer.IsEnabled = false;
@@ -101,5 +103,11 @@ namespace iGaze
 			Timer.IsEnabled = false;
 			TimerAction = null;
 		}
+
+		private void GazeSource_DataAvailable(object sender, EventArgs e)
+		{
+			System.Windows.Forms.Cursor.Position = GazeSource.DataPoint;
+		}
+
 	}
 }
