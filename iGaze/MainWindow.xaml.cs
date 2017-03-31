@@ -62,11 +62,7 @@ namespace iGaze
 		private void Timer_Tick(object sender, EventArgs e)
 		{
 			if (DateTime.UtcNow - GazeSource.DataTimeStamp < GazeTimeMilliseconds)
-			{
-				KeyHitAudio.Position = TimeSpan.Zero;
-				KeyHitAudio.Play();
 				TimerAction?.Invoke();
-			}
 		}
 
 
