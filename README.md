@@ -25,12 +25,12 @@ Copyright (c) 2017 Peter Morris (mrpmorris@gmail.com)
 
 How do use this software
 ========================
-1: Install + calibrate your Tobii 4C eye gaze device. 
-2: Run the application
-3: Stare at a letter to add it to your currently typed text.
-4: Stare at the < button to delete the last typed letter.
-5: Stare at the _ button to add spaces between words.
-6: Stare at the OK button to have the computer speak the typed sentence.
+    1: Install + calibrate your Tobii 4C eye gaze device. 
+    2: Run the application
+    3: Stare at a letter to add it to your currently typed text.
+    4: Stare at the < button to delete the last typed letter.
+    5: Stare at the _ button to add spaces between words.
+    6: Stare at the OK button to have the computer speak the typed sentence.
 
 Additional calibration is available by pressing the letter C on the computer's keyboard.
 The screen will turn black and a small pulsing dot will appear at the top left of the screen.
