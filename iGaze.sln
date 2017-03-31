@@ -5,16 +5,23 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iGaze", "iGaze\iGaze.csproj", "{E4849C57-28D6-4C56-855C-55269FD37942}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "iGazeInstaller", "iGazeInstaller\iGazeInstaller.vdproj", "{14CD06D8-BB19-45F7-9DF6-F36064738E18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E4849C57-28D6-4C56-855C-55269FD37942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4849C57-28D6-4C56-855C-55269FD37942}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4849C57-28D6-4C56-855C-55269FD37942}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4849C57-28D6-4C56-855C-55269FD37942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4849C57-28D6-4C56-855C-55269FD37942}.Debug|x86.ActiveCfg = Debug|x86
+		{E4849C57-28D6-4C56-855C-55269FD37942}.Debug|x86.Build.0 = Debug|x86
+		{E4849C57-28D6-4C56-855C-55269FD37942}.Release|x86.ActiveCfg = Release|x86
+		{E4849C57-28D6-4C56-855C-55269FD37942}.Release|x86.Build.0 = Release|x86
+		{E4849C57-28D6-4C56-855C-55269FD37942}.Release|x86.Deploy.0 = Release|x86
+		{14CD06D8-BB19-45F7-9DF6-F36064738E18}.Debug|x86.ActiveCfg = Debug
+		{14CD06D8-BB19-45F7-9DF6-F36064738E18}.Release|x86.ActiveCfg = Release
+		{14CD06D8-BB19-45F7-9DF6-F36064738E18}.Release|x86.Build.0 = Release
+		{14CD06D8-BB19-45F7-9DF6-F36064738E18}.Release|x86.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
