@@ -19,6 +19,7 @@ namespace iGaze
 		private DispatcherTimer Timer;
 		private Action TimerAction;
 		private SpeechSynthesizer Text2Speech;
+		private Button HighlightedButton;
 
 		public MainWindow()
 		{
@@ -77,8 +78,9 @@ namespace iGaze
 
 		private void Button_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
 		{
-			Button control = (Button)sender;
-			switch ((string)control.Tag)
+			HighlightedButton = (Button)sender;
+			RepositionToolTip();
+			switch ((string)HighlightedButton.Tag)
 			{
 				case "OK":
 					if (InputText.Text.Length > 0)
@@ -93,15 +95,23 @@ namespace iGaze
 					break;
 
 				default:
-					TimeOut(() => SetText(InputText.Text + (string)control.Tag));
+					TimeOut(() => SetText(InputText.Text + (string)HighlightedButton.Tag));
 					break;
 			}
+		}
+
+		private void RepositionToolTip()
+		{
+			var point = HighlightedButton.TransformToAncestor(this).Transform(new Point(0, 0));
+			Canvas.SetLeft(CurrentWordToolTip, point.X + (HighlightedButton.ActualWidth / 2) - (CurrentWordToolTip.ActualWidth / 2));
+			Canvas.SetTop(CurrentWordToolTip, point.Y + (HighlightedButton.ActualHeight / 2) - (CurrentWordToolTip.ActualHeight / 2) + 50);
 		}
 
 		private void Button_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
 		{
 			Timer.IsEnabled = false;
 			TimerAction = null;
+			HighlightedButton = null;
 		}
 
 		private void GazeSource_DataAvailable(object sender, EventArgs e)
@@ -114,6 +124,7 @@ namespace iGaze
 			InputText.Text = value ?? "";
 			string currentWord = InputText.Text.Split('_').Last();
 			SetValue(CurrentWordProperty, currentWord);
+			RepositionToolTip();
 		}
 
 	}

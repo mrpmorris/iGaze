@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:iGaze"
         mc:Ignorable="d"
+        Name="Root"
         FontSize="40"
         PreviewKeyDown="Window_PreviewKeyDown"
         WindowState="Maximized"
@@ -134,5 +135,18 @@
         <Button Grid.Row="4" Grid.Column="9" Tag="OK" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>OK</TextBlock>
         </Button>
+        <Canvas>
+            <TextBlock 
+                Name="CurrentWordToolTip"
+                Canvas.Top="0" 
+                Canvas.Left="0"
+                Text="{Binding ElementName=Root, Path=CurrentWord}"
+                Background="{x:Static SystemColors.ActiveCaptionBrush}"
+                Foreground="{x:Static SystemColors.ActiveCaptionTextBrush}"
+                IsHitTestVisible="False"
+                FontSize="28"/>
+        </Canvas>
+
+
     </Grid>
 </Window>
