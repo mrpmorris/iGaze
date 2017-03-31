@@ -71,6 +71,8 @@
         <Viewbox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10">
             <TextBox Name="PreviousInputText" BorderThickness="0"/>
         </Viewbox>
+        <MediaElement Source="Resources/KeyHit.mp3" Visibility="Hidden" Name="KeyHitAudio" LoadedBehavior="Manual"/>
+
 
         <!-- Row 3 -->
         <Button Grid.Row="3" Grid.Column="0" Tag="A" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
