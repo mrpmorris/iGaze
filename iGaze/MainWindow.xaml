@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         FontSize="40"
         PreviewKeyDown="Window_PreviewKeyDown"
+        WindowState="Maximized"
         Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
