@@ -1,5 +1,6 @@
 ﻿using iGaze.GazeSources;
 using System;
+using System.Linq;
 using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +13,7 @@ namespace iGaze
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static readonly DependencyProperty CurrentWordProperty = DependencyProperty.Register("CurrentWord", typeof(bool), typeof(MainWindow));
+		public static readonly DependencyProperty CurrentWordProperty = DependencyProperty.Register("CurrentWord", typeof(string), typeof(MainWindow));
 		private readonly TimeSpan GazeTimeMilliseconds = TimeSpan.FromSeconds(0.9);
 		private GazeSource GazeSource;
 		private DispatcherTimer Timer;
@@ -22,7 +23,6 @@ namespace iGaze
 		public MainWindow()
 		{
 			InitializeComponent();
-			Calibrate();
 			GazeSource = GazeSourceFactory.Create();
 			GazeSource.UseCalibration = true;
 			GazeSource.UseSmoothing = true;
@@ -54,7 +54,7 @@ namespace iGaze
 				string speech = InputText.Text.Replace('_', ' ');
 				Text2Speech.SpeakAsync(speech);
 				PreviousInputText.Text = "I said: " + speech;
-				InputText.Text = "";
+				SetText("");
 			}
 		}
 
@@ -88,12 +88,12 @@ namespace iGaze
 				case "DELETE":
 					TimeOut(() =>
 					{
-						if (InputText.Text.Length > 0) InputText.Text = InputText.Text.Remove(InputText.Text.Length - 1);
+						if (InputText.Text.Length > 0) SetText(InputText.Text.Remove(InputText.Text.Length - 1));
 					});
 					break;
 
 				default:
-					TimeOut(() => InputText.Text += (string)control.Tag);
+					TimeOut(() => SetText(InputText.Text + (string)control.Tag));
 					break;
 			}
 		}
@@ -107,6 +107,13 @@ namespace iGaze
 		private void GazeSource_DataAvailable(object sender, EventArgs e)
 		{
 			System.Windows.Forms.Cursor.Position = GazeSource.DataPoint;
+		}
+
+		private void SetText(string value)
+		{
+			InputText.Text = value ?? "";
+			string currentWord = InputText.Text.Split('_').Last();
+			SetValue(CurrentWordProperty, currentWord);
 		}
 
 	}

@@ -32,7 +32,7 @@
 
         <!-- Row 0 -->
         <Button Grid.Row="0" Grid.Column="0" Tag="Q" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
-            <TextBlock >Q</TextBlock>
+            <TextBlock>Q</TextBlock>
         </Button>
         <Button Grid.Row="0" Grid.Column="1" Tag="W" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave">
             <TextBlock>W</TextBlock>
