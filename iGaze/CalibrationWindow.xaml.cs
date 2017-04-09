@@ -15,7 +15,8 @@ namespace iGaze
 	public partial class CalibrationWindow : Window
 	{
 		private GazeSource GazeSource;
-		private DispatcherTimer Timer;
+        private DispatcherTimer TimeoutTimer;
+		private DispatcherTimer GazeTimer;
 		private List<System.Drawing.Point> DataPoints;
 		private DateTime LastSampleTime;
 		private PointF[] AverageDataPoints = new PointF[4];
@@ -34,16 +35,26 @@ namespace iGaze
 			GazeSource = GazeSourceFactory.Create();
 			GazeSource.UseCalibration = false;
 			GazeSource.UseSmoothing = true;
-			Timer = new DispatcherTimer();
-			Timer.Interval = TimeSpan.FromMilliseconds(1000 / 50);
-			Timer.Tick += Timer_Tick;
-			Timer.Start();
+			GazeTimer = new DispatcherTimer();
+			GazeTimer.Interval = TimeSpan.FromMilliseconds(1000 / 50);
+			GazeTimer.Tick += GazeTimerTick;
+			GazeTimer.Start();
+            TimeoutTimer = new DispatcherTimer();
+            TimeoutTimer.Interval = TimeSpan.FromSeconds(8);
+            TimeoutTimer.Tick += TimeoutTimer_Tick;
+            TimeoutTimer.Start();
 			ClearFocusPointLocation();
 			Canvas.SetLeft(FocusPoint, 0);
 			Canvas.SetTop(FocusPoint, 0);
 		}
 
-		private void Timer_Tick(object sender, EventArgs e)
+        private void TimeoutTimer_Tick(object sender, EventArgs e)
+        {
+            MessageBox.Show("I'm not getting any eye data from you");
+            Close();
+        }
+
+        private void GazeTimerTick(object sender, EventArgs e)
 		{
 			if (GazeSource.DataTimeStamp == LastSampleTime)
 				return;
@@ -67,6 +78,9 @@ namespace iGaze
 				DataPoints.Clear();
 				AverageDataPoints[DataPointIndex] = new PointF((float)x, (float)y);
 				DataPointIndex++;
+
+                TimeoutTimer.Stop();
+                TimeoutTimer.Start();
 
 				switch (DataPointIndex)
 				{
@@ -107,7 +121,7 @@ namespace iGaze
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			Timer.Stop();
+			GazeTimer.Stop();
 			GazeSource.Dispose();
 			System.Windows.Forms.Cursor.Show();
 		}
