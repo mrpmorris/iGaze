@@ -17,7 +17,7 @@
         IsVisibleChanged="Window_IsVisibleChanged"
         Title="CalibrationWindow" Height="500" Width="500">
     <Canvas>
-        <Ellipse Height="5" Width="5" Fill="White" Name="FocusPoint">
+        <Ellipse Height="10" Width="10" Fill="White" Name="FocusPoint">
             <Ellipse.Triggers>
                 <EventTrigger RoutedEvent="UserControl.Loaded">
                     <EventTrigger.Actions>
