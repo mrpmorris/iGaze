@@ -70,6 +70,8 @@ namespace iGaze
 		{
 			if (e.Key == System.Windows.Input.Key.C)
 				Calibrate();
+            if (e.Key == System.Windows.Input.Key.Escape)
+                Close();
 		}
 
 		private void Button_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
